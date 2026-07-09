@@ -1,0 +1,21 @@
+title,description,category,priority
+Hostel room ceiling leak,Water is leaking heavily near electric switch in hostel room,Hostel,Critical
+Mess food hygiene issue,Food served in mess smells bad and many students feel sick,Mess & Cafeteria,High
+Exam admit card missing,Admit card is not visible before tomorrow examination,Examination,High
+WiFi not working,Campus WiFi login fails for my student account,IT Support,Medium
+Library renewal error,Library website fails while renewing issued book,Library,Medium
+Bus route delay,University bus route number three is delayed daily,Transport,Low
+Broken classroom fan,Classroom fan is broken and needs repair,Maintenance,Medium
+Unsafe hostel corridor,Hostel corridor lights are off and area feels unsafe,Security,Critical
+Medical room unavailable,Health centre was closed during emergency injury,Medical,Critical
+Assignment portal blocked,Academic portal is not accepting assignment upload,Academics,High
+Hostel water shortage,No water supply in hostel washroom since morning,Hostel,High
+Cafeteria billing problem,Cafeteria charged extra amount for meal card,Mess & Cafeteria,Low
+Result correction request,Internal marks are incorrectly displayed on exam portal,Examination,High
+Password reset failed,Unable to reset ERP password using registered email,IT Support,Medium
+Book availability request,Required reference book is not available in library,Library,Low
+Bus pass not issued,Transport office has not issued my bus pass,Transport,Medium
+Lab light broken,Computer lab tube light is broken,Maintenance,Low
+Theft near parking,My helmet was stolen near student parking,Security,High
+Doctor appointment delay,Medical appointment was delayed despite fever,Medical,Medium
+Faculty timetable conflict,Two academic lectures are scheduled at the same time,Academics,Medium

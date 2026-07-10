@@ -4,8 +4,8 @@ import { User } from '../models/user.model.js'
 import { formatUser } from '../utils/format.js'
 import { signToken } from '../utils/token.js'
 
-const registerSchema = z.object({ name: z.string().min(2), email: z.email(), password: z.string().min(6), role: z.enum(['student', 'admin']), studentId: z.string().optional() })
-const loginSchema = z.object({ email: z.email(), password: z.string().min(6), role: z.enum(['student', 'admin']).optional() })
+const registerSchema = z.object({ name: z.string().min(2), email: z.email(), password: z.string().min(6), role: z.enum(['student', 'admin', 'staff']), studentId: z.string().optional() })
+const loginSchema = z.object({ email: z.email(), password: z.string().min(6), role: z.enum(['student', 'admin', 'staff']).optional() })
 
 export async function register(request, response, next) {
   try {

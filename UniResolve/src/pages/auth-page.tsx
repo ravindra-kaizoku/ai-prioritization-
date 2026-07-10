@@ -28,7 +28,9 @@ export function AuthPage({ mode = 'login' }: { mode?: 'login' | 'register' }) {
     try {
       if (mode === 'register') await register({ name: values.name ?? 'New User', email: values.email, password: values.password, role, studentId: values.studentId })
       else await login(values.email, values.password, role)
-      navigate(role === 'admin' ? '/admin' : '/student')
+      if (role === 'admin') navigate('/admin')
+      else if (role === 'staff') navigate('/staff/dashboard')
+      else navigate('/student')
     } catch {
       setError('Authentication failed. Please check the credentials and try again.')
     } finally {
@@ -57,8 +59,8 @@ export function AuthPage({ mode = 'login' }: { mode?: 'login' | 'register' }) {
             <CardDescription>Choose a role and continue to the complaint dashboard.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="mb-4 grid grid-cols-2 gap-2 rounded-md bg-muted p-1">
-              {(['student', 'admin'] as UserRole[]).map((item) => (
+            <div className="mb-4 grid grid-cols-3 gap-2 rounded-md bg-muted p-1">
+              {(['student', 'admin', 'staff'] as UserRole[]).map((item) => (
                 <button key={item} className={`rounded-md px-3 py-2 text-sm font-semibold capitalize ${role === item ? 'bg-white text-primary shadow-soft' : 'text-muted-foreground'}`} onClick={() => setRole(item)} type="button">
                   {item}
                 </button>

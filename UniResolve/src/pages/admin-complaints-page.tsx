@@ -13,6 +13,7 @@ const statuses: ComplaintStatus[] = ['Under Review', 'Assigned', 'In Progress', 
 export function AdminComplaintsPage() {
   const [complaints, setComplaints] = useState<Complaint[]>([])
   const [query, setQuery] = useState('')
+  const [assignee, setAssignee] = useState<Record<string, string>>({})
 
   useEffect(() => {
     void api.getComplaints().then(setComplaints)
@@ -21,6 +22,11 @@ export function AdminComplaintsPage() {
   async function updateStatus(complaint: Complaint, status: ComplaintStatus) {
     const updated = await api.updateComplaint(complaint.id, { status })
     setComplaints((items) => items.map((item) => (item.id === complaint.id ? updated : item)))
+  }
+
+  async function assignStaff(id: string, staffName: string) {
+    const updated = await api.updateComplaint(id, { assignedStaff: staffName })
+    setComplaints((items) => items.map((item) => (item.id === id ? updated : item)))
   }
 
   const filtered = complaints.filter((item) => `${item.title} ${item.category} ${item.department}`.toLowerCase().includes(query.toLowerCase()))
@@ -33,7 +39,7 @@ export function AdminComplaintsPage() {
       </CardHeader>
       <CardContent className="overflow-x-auto">
         <Table>
-          <TableHeader><TableRow><TableHead>Title</TableHead><TableHead>AI Category</TableHead><TableHead>Priority</TableHead><TableHead>Status</TableHead><TableHead>Department</TableHead><TableHead>Update</TableHead></TableRow></TableHeader>
+          <TableHeader><TableRow><TableHead>Title</TableHead><TableHead>AI Category</TableHead><TableHead>Priority</TableHead><TableHead>Status</TableHead><TableHead>Department</TableHead><TableHead>Assign Staff</TableHead><TableHead>Update</TableHead></TableRow></TableHeader>
           <TableBody>
             {filtered.map((complaint) => (
               <TableRow key={complaint.id}>
@@ -42,6 +48,23 @@ export function AdminComplaintsPage() {
                 <TableCell><PriorityBadge value={complaint.priority} /></TableCell>
                 <TableCell><StatusBadge value={complaint.status} /></TableCell>
                 <TableCell>{complaint.department}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-1">
+                    <Input
+                      className="h-8 max-w-28 text-xs"
+                      placeholder={complaint.assignedStaff || 'Unassigned'}
+                      value={assignee[complaint.id] ?? ''}
+                      onChange={(e) => setAssignee(prev => ({ ...prev, [complaint.id]: e.target.value }))}
+                    />
+                    <Button
+                      size="sm"
+                      className="h-8 px-2 text-xs"
+                      onClick={() => void assignStaff(complaint.id, assignee[complaint.id] || '')}
+                    >
+                      Assign
+                    </Button>
+                  </div>
+                </TableCell>
                 <TableCell><div className="flex flex-wrap gap-2">{statuses.map((status) => <Button key={status} variant="outline" size="sm" onClick={() => void updateStatus(complaint, status)}>{status}</Button>)}</div></TableCell>
               </TableRow>
             ))}

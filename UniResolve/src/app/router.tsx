@@ -9,6 +9,7 @@ import { ComplaintDetailPage } from '@/pages/complaint-detail-page'
 import { FeedbackPage } from '@/pages/feedback-page'
 import { NotificationsPage } from '@/pages/notifications-page'
 import { ProfilePage } from '@/pages/profile-page'
+import { StaffDashboardPage } from '@/pages/staff-dashboard-page'
 import { StudentDashboardPage } from '@/pages/student-dashboard-page'
 import { SubmitComplaintPage } from '@/pages/submit-complaint-page'
 import { ProtectedRoute } from '@/routes/protected-route'
@@ -44,6 +45,17 @@ export const router = createBrowserRouter([
           { path: 'notifications', element: <NotificationsPage /> },
           { path: 'profile', element: <ProfilePage /> },
           { path: 'feedback', element: <FeedbackPage /> },
+        ],
+      },
+      {
+        path: 'staff',
+        element: <ProtectedRoute roles={['staff']} />,
+        children: [
+          { index: true, element: <StaffDashboardPage /> },
+          { path: 'dashboard', element: <StaffDashboardPage /> },
+          { path: 'complaints/:id', element: <ComplaintDetailPage /> },
+          { path: 'notifications', element: <NotificationsPage /> },
+          { path: 'profile', element: <ProfilePage /> },
         ],
       },
     ],

@@ -1,4 +1,4 @@
-export type UserRole = 'student' | 'admin'
+export type UserRole = 'student' | 'admin' | 'staff'
 export type ComplaintCategory = 'Hostel' | 'Academics' | 'Examination' | 'IT Support' | 'Library' | 'Transport' | 'Maintenance' | 'Mess & Cafeteria' | 'Security' | 'Medical'
 export type ComplaintPriority = 'Critical' | 'High' | 'Medium' | 'Low'
 export type ComplaintStatus = 'Submitted' | 'Under Review' | 'Assigned' | 'In Progress' | 'Resolved' | 'Closed'

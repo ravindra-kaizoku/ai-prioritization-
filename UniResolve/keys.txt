@@ -1,0 +1,4 @@
+MONGO_URI=mongodb+srv://ravindra23mis7297_db_user:_lReFpKwTHEpXTH8x@cluster0.lvcrasc.mongodb.net/uniresolve?retryWrites=true&w=majority&appName=Cluster0
+JWT_SECRET=uniresolve-secure-jwt-key-987654321
+CLIENT_URL=*
+AI_SERVICE_URL=YOUR_DEPLOYED_AI_SERVICE_URL

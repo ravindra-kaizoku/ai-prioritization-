@@ -33,7 +33,11 @@ export async function createComplaint(request, response, next) {
 
 export async function listComplaints(request, response, next) {
   try {
-    const filter = request.user.role === 'student' ? { student: request.user._id } : {}
+    const filter = request.user.role === 'student'
+      ? { student: request.user._id }
+      : request.user.role === 'staff'
+        ? { assignedStaff: { $regex: new RegExp(`^${request.user.name}$`, 'i') } }
+        : {}
     const complaints = await Complaint.find(filter).populate('student', 'name email').sort({ createdAt: -1 })
     response.json({ success: true, data: complaints.map(formatComplaint) })
   } catch (error) {
